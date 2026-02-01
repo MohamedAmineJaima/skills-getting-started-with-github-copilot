@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const deleteBtn = document.createElement("button");
             deleteBtn.className = "delete-participant-btn";
             deleteBtn.title = `Remove ${p} from ${name}`;
+            deleteBtn.setAttribute("aria-label", `Remove ${p} from ${name}`);
             deleteBtn.innerHTML = '&#x2717;';
             deleteBtn.addEventListener("click", async (e) => {
               e.preventDefault();
