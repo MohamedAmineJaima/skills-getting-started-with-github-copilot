@@ -71,3 +71,16 @@ def test_unregister_activity_not_found():
     email = "a@b.com"
     r = client.post(f"/activities/NoSuchActivity/unregister?email={email}")
     assert r.status_code == 404
+
+
+def test_manga_maniacs_exists():
+    """Test that Manga Maniacs club is present in the activities"""
+    client = TestClient(app)
+    r = client.get("/activities")
+    assert r.status_code == 200
+    data = r.json()
+    assert "Manga Maniacs" in data
+    assert data["Manga Maniacs"]["description"] == "Explore the fantastic stories of the most interesting characters from Japanese Manga (graphic novels)."
+    assert data["Manga Maniacs"]["schedule"] == "Tuesdays at 7pm"
+    assert data["Manga Maniacs"]["max_participants"] == 15
+    assert data["Manga Maniacs"]["participants"] == []
